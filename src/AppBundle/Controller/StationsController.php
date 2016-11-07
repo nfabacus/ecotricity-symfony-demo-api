@@ -79,12 +79,19 @@ class StationsController extends Controller
     {
         $identifier= $request->get('identifier');
         $password = $request->get('password');
-        $userCredentials = array(
-            "identifier" => $identifier,
-            "password" => $password
-        );
 
-        return new Response("User credential logged.");
+
+
+        if ($identifier == "user" & $password == "123") {
+            $myResult = array( "result" => array(
+                array("id" => "0000015305", "registration" => "AB01 CDE", "specification" => "(2014-)", "model" => "A3 e-tron", "make" => "Audi"  ),
+                array("id" => "0000015345", "registration" => "CD03 FGH", "specification" => "(2015-)", "model" => "e-NV200 Combi", "make" => "Nissan"  ),
+                array("id" => "0000016235", "registration" => "NF16 OIE", "specification" => "(2015-)", "model" => "X5 xDrive40e", "make" => "BMW"  )
+            ));
+        } else {
+            $myResult = array( "result" => false );
+        }
+        return new JsonResponse($myResult);
     }
 }
 
