@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Station;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,6 +19,21 @@ use Symfony\Component\HttpFoundation\Response;
 
 class StationsController extends Controller
 {
+    /**
+     * @Route("/station/new")
+     */
+    public function newAction()
+    {
+        $station = new Station();
+        $station->setName('Station'.rand(1, 100));
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($station);
+        $em->flush();
+
+        return new Response('<html><body>Station created!</body></html>');
+    }
+
     /**
      * @Route("/pumps")
      */
