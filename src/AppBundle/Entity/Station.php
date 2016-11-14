@@ -48,16 +48,6 @@ class Station
      */
     private $location;
 
-//    /**
-//     * @ORM\Column(type="integer")
-//     */
-//    private $pumpId;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $pumpModel;
-
     /**
      * @ORM\Column(type="boolean")
      */
@@ -161,38 +151,6 @@ class Station
         $this->location = $location;
     }
 
-//    /**
-//     * @return mixed
-//     */
-//    public function getPumpId()
-//    {
-//        return $this->pumpId;
-//    }
-//
-//    /**
-//     * @param mixed $pumpId
-//     */
-//    public function setPumpId($pumpId)
-//    {
-//        $this->pumpId = $pumpId;
-//    }
-
-    /**
-     * @return mixed
-     */
-    public function getPumpModel()
-    {
-        return $this->pumpModel;
-    }
-
-    /**
-     * @param mixed $pumpModel
-     */
-    public function setPumpModel($pumpModel)
-    {
-        $this->pumpModel = $pumpModel;
-    }
-
     /**
      * @return mixed
      */
@@ -255,6 +213,33 @@ class Station
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param mixed $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+    public function __construct() {
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue() {
+        $this->setUpdatedAt(new \DateTime());
     }
 
 

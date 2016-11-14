@@ -63,11 +63,6 @@ class Pump
      */
     private $pumpModel;
 
-//    /**
-//     * @ORM\Column(type="string")
-//     */
-//    private $connector;
-
     /**
      * @ORM\Column(type="datetime")
      */
@@ -75,6 +70,7 @@ class Pump
 
     /**
      * @ORM\ManyToOne(targetEntity="Station")
+     * @ORM\JoinColumn(name="location_id", referencedColumnName="location_id")
      */
     private $station;
 
@@ -214,22 +210,6 @@ class Pump
         $this->pumpModel = $pumpModel;
     }
 
-//    /**
-//     * @return mixed
-//     */
-//    public function getConnector()
-//    {
-//        return $this->connector;
-//    }
-//
-//    /**
-//     * @param mixed $connector
-//     */
-//    public function setConnector($connector)
-//    {
-//        $this->connector = $connector;
-//    }
-
     /**
      * @return mixed
      */
@@ -249,6 +229,23 @@ class Pump
     /**
      * @return mixed
      */
+    public function getUpdatedAt()
+    {
+        return $this->updatdAt;
+    }
+
+    /**
+     * @param mixed $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+
+    /**
+     * @return mixed
+     */
     public function getStation()
     {
         return $this->station;
@@ -261,6 +258,19 @@ class Pump
     {
         $this->station = $station;
     }
+
+    public function __construct() {
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue() {
+        $this->setUpdatedAt(new \DateTime());
+    }
+
 
 
 }

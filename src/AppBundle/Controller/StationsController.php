@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Connector;
 use AppBundle\Entity\Pump;
 use AppBundle\Entity\Station;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -31,7 +32,6 @@ class StationsController extends Controller
         $station->setName('Station'.rand(1, 100));
         $station->setPostcode('HP2 2AB');
         $station->setLocation('M'.rand(1,30).'Jct '.rand(1,40));
-        $station->setPumpModel('AC (RAPID) / DC (CHAdeMO)');
         $station->setAvailable(true);
         $station->setSwipeOnly(false);
         $station->setDistance(21.2323224);
@@ -47,10 +47,18 @@ class StationsController extends Controller
         $pump->setPumpModel("AC (RAPID) / DC (CHAdeMO) / CCS");
         $pump->setStation($station);
 
+        $connector = new Connector();
+        $connector->setPump($pump);
+        $connector->setName("DC (CHADEMO)");
+
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($station);
         $em->persist($pump);
+        $em->persist($connector);
         $em->flush();
+
+
 
         return new Response('<html><body>Station created!</body></html>');
     }
@@ -74,6 +82,8 @@ class StationsController extends Controller
         $vehicleMake = $request->get('vehicleMake');
         $latitude = $request->get('latitude');
         $longitude = $request->get('longitude');
+
+
         $myDetails = array(
             "vehicleSpec" => $vehicleSpecification,
             "vehicleMake" => $vehicleMake,
