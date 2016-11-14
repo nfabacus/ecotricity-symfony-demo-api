@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Pump;
 use AppBundle\Entity\Station;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -25,10 +26,30 @@ class StationsController extends Controller
     public function newAction()
     {
         $station = new Station();
+        $station->setLatitude(55.21963);
+        $station->setLongitude(-3.410563);
         $station->setName('Station'.rand(1, 100));
+        $station->setPostcode('HP2 2AB');
+        $station->setLocation('M'.rand(1,30).'Jct '.rand(1,40));
+        $station->setPumpModel('AC (RAPID) / DC (CHAdeMO)');
+        $station->setAvailable(true);
+        $station->setSwipeOnly(false);
+        $station->setDistance(21.2323224);
+
+        $pump = new Pump();
+        $pump->setStatus('Available');
+        $pump->setLatitude(55.21963);
+        $pump->setLongitude(-3.410563);
+        $pump->setName('Station'.rand(1, 100));
+        $pump->setPostcode('HP2 2AB');
+        $pump->setLocation('M'.rand(1,30).'Jct '.rand(1,40));
+        $pump->setLastHeartbeat("2016-11-14T01:15:45Z");
+        $pump->setPumpModel("AC (RAPID) / DC (CHAdeMO) / CCS");
+        $pump->setStation($station);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($station);
+        $em->persist($pump);
         $em->flush();
 
         return new Response('<html><body>Station created!</body></html>');

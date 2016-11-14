@@ -1,0 +1,35 @@
+AppBundle\Entity\Station:
+  station_{1..10}:
+    latitude: <randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 100)>
+    longitude: <randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 100)>
+    name: <city()>
+    postcode: <postcode()>
+    location: <city()>
+    pumpId: <numberBetween(1,2000)>
+    pumpModel: <text(20)>
+    available: <boolean(50)>
+    swipeOnly: <boolean(50)>
+    distance: <numberBetween(1,100)>
+
+
+AppBundle\Entity\Pump:
+  pump_{1..10}:
+    status: <boolean(50)>
+    latitude: <randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 100)>
+    longitude: <randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 100)>
+    name: <city()>
+    postcode: <postcode()>
+    location: <city()>
+    locationId: <numberBetween(1,2000)>
+    pumpId: <numberBetween(1,2000)>
+    lastHeartbeat: <Date()>
+    pumpModel: <text(20)>
+    connector: <text(20)>
+
+AppBundle\Entity\Connector:
+  connector_{1..10}:
+    compatible: "X"
+    type: "DC (CHAdeMO)"
+    status: "Available"
+    name: "DC (CHAdeMO)"
+    sessionDuration: 30

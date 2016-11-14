@@ -21,7 +21,7 @@ class Station
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $locationId;
 
     /**
      * @ORM\Column(type="string")
@@ -48,15 +48,10 @@ class Station
      */
     private $location;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $locationId;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $pumpId;
+//    /**
+//     * @ORM\Column(type="integer")
+//     */
+//    private $pumpId;
 
     /**
      * @ORM\Column(type="string")
@@ -78,6 +73,19 @@ class Station
      */
     private $distance;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+
+    /**
+     * @return mixed
+     */
+    public function getLocationId()
+    {
+        return $this->locationId;
+    }
 
     public function getName()
     {
@@ -153,37 +161,21 @@ class Station
         $this->location = $location;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLocationId()
-    {
-        return $this->locationId;
-    }
-
-    /**
-     * @param mixed $locationId
-     */
-    public function setLocationId($locationId)
-    {
-        $this->locationId = $locationId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPumpId()
-    {
-        return $this->pumpId;
-    }
-
-    /**
-     * @param mixed $pumpId
-     */
-    public function setPumpId($pumpId)
-    {
-        $this->pumpId = $pumpId;
-    }
+//    /**
+//     * @return mixed
+//     */
+//    public function getPumpId()
+//    {
+//        return $this->pumpId;
+//    }
+//
+//    /**
+//     * @param mixed $pumpId
+//     */
+//    public function setPumpId($pumpId)
+//    {
+//        $this->pumpId = $pumpId;
+//    }
 
     /**
      * @return mixed
@@ -247,6 +239,22 @@ class Station
     public function setDistance($distance)
     {
         $this->distance = $distance;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
     }
 
 
