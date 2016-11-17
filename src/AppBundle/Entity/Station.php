@@ -69,6 +69,8 @@ class Station
     private $createdAt;
 
 
+
+
     /**
      * @return mixed
      */

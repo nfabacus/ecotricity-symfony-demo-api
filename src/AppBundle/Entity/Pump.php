@@ -69,7 +69,7 @@ class Pump
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Station")
+     * @ORM\ManyToOne(targetEntity="Station", inversedBy="pumps")
      * @ORM\JoinColumn(name="location_id", referencedColumnName="location_id")
      */
     private $station;

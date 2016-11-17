@@ -91,10 +91,20 @@ class StationsController extends Controller
             "latitude" => $latitude,
             "longitude" => $longitude
         );
-//        $params = json_decode($body, true);
 
-        return new JsonResponse($myDetails);
-//        return new Response($body);
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT c
+        FROM AppBundle:Station c'
+        );
+        $stations = $query->getArrayResult();
+        $stationsResult = array("result"=>$stations);
+
+        $response = new Response(json_encode($stationsResult));
+        $response->headers->set('Content-Type', 'application/json');
+
+
+        return $response;
 
     }
 
@@ -115,7 +125,21 @@ class StationsController extends Controller
             "locationId" => $locationId
         );
 
-        return new JsonResponse($locationDetails);
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT c
+        FROM AppBundle:Pump c'
+        );
+        $pumps = $query->getArrayResult();
+        $pumpsResult = array("result"=>array("pump"=>$pumps));
+
+        $response = new Response(json_encode($pumpsResult));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+
+
+//        return new JsonResponse($locationDetails);
     }
 
     /**
