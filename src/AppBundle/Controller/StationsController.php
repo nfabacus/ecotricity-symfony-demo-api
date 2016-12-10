@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Connector;
 use AppBundle\Entity\Pump;
 use AppBundle\Entity\Station;
+use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -68,12 +69,31 @@ class StationsController extends Controller
      */
     public function showAction()
     {
-        return new Response('Hello, World!');
+        /** @var EntityManager $entityManager */
+        $entityManager = $this->get('doctrine')->getManager();
+        $stationRepository =  $entityManager->getRepository(Station::class);
+        $stations = $stationRepository->findAll();
+        $stationsArr =[];
+
+        foreach ($stations as $station) {
+            $stationsArr[] = $station;
+        }
+
+        $serializer = $this->get('jms_serializer');
+        $stationsJSON = $serializer->serialize($stationsArr, 'json');
+        $stationsResult = '{"result": '.$stationsJSON.'}';
+
+        $response = new Response($stationsResult);
+        $response->headers->set('Content-Type', 'application/json');
+
+
+        return $response;
     }
 
     /**
      * @Route("/getPumpList")
-     * @Method("POST")
+     * use post later, for convenience, I am using GET right now, so I can see in the browser.
+     * @Method("GET")
      */
     public function getPumpListAction(Request $request)
     {
