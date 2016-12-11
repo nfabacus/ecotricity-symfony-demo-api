@@ -70,30 +70,54 @@ class StationsController extends Controller
     public function showAction()
     {
         /** @var EntityManager $entityManager */
-        $entityManager = $this->get('doctrine')->getManager();
+        $entityManager = $this->get('doctrine')->getEntityManager();
         $stationRepository =  $entityManager->getRepository(Station::class);
         $stations = $stationRepository->findAll();
         $stationsArr =[];
 
         foreach ($stations as $station) {
-            $stationsArr[] = $station;
+            $stationData = [];
+            $stationData['latitude'] = $station->getLatitude();
+            $stationData['longitude'] = $station->getLongitude();
+            $stationData['name'] = $station->getName();
+            $stationData['postcode'] = $station->getPostcode();
+            $stationData['location'] = $station->getLocation();
+            $stationData['location_id'] = $station->getLocationId();
+            $stationData['pumpId'] = [];
+            $stationData['pumpModel'] = $station->getPumpModel();
+            $stationData['available'] = $station->getAvailable();
+            $stationData['swipeOnly'] = $station->getSwipeOnly();
+            $stationData['distance'] = $station->getDistance();
+
+
+            $pumps = $station->getPumps();
+
+            /** @var Pump $pump */
+            foreach ($pumps as $pump) {
+                $pumpId = $pump->getPumpId();
+                $stationData['pumpId'][]=$pumpId;
+            }
+            $stationsArr[] = $stationData;
         }
+        $stationsResult = array("result"=>$stationsArr);
 
-        $serializer = $this->get('jms_serializer');
-        $stationsJSON = $serializer->serialize($stationsArr, 'json');
-        $stationsResult = '{"result": '.$stationsJSON.'}';
+        return new JsonResponse($stationsResult);
 
-        $response = new Response($stationsResult);
-        $response->headers->set('Content-Type', 'application/json');
+//        $serializer = $this->get('jms_serializer');
+//        $stationsJSON = $serializer->serialize($stationsArr, 'json');
+//        $stationsResult = '{"result": '.$stationsJSON.'}';
+//
+//        $response = new Response($stationsResult);
+//        $response->headers->set('Content-Type', 'application/json');
+//
 
-
-        return $response;
+//        return $response;
     }
 
     /**
      * @Route("/getPumpList")
      * use post later, for convenience, I am using GET right now, so I can see in the browser.
-     * @Method("GET")
+     * @Method("POST")
      */
     public function getPumpListAction(Request $request)
     {
@@ -112,19 +136,54 @@ class StationsController extends Controller
             "longitude" => $longitude
         );
 
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-            'SELECT c
-        FROM AppBundle:Station c'
-        );
-        $stations = $query->getArrayResult();
-        $stationsResult = array("result"=>$stations);
 
-        $response = new Response(json_encode($stationsResult));
-        $response->headers->set('Content-Type', 'application/json');
+        /** @var EntityManager $entityManager */
+        $entityManager = $this->get('doctrine')->getEntityManager();
+        $stationRepository =  $entityManager->getRepository(Station::class);
+        $stations = $stationRepository->findAll();
+        $stationsArr =[];
+
+        foreach ($stations as $station) {
+            $stationData = [];
+            $stationData['latitude'] = $station->getLatitude();
+            $stationData['longitude'] = $station->getLongitude();
+            $stationData['name'] = $station->getName();
+            $stationData['postcode'] = $station->getPostcode();
+            $stationData['location'] = $station->getLocation();
+            $stationData['location_id'] = $station->getLocationId();
+            $stationData['pumpId'] = [];
+            $stationData['pumpModel'] = $station->getPumpModel();
+            $stationData['available'] = $station->getAvailable();
+            $stationData['swipeOnly'] = $station->getSwipeOnly();
+            $stationData['distance'] = $station->getDistance();
 
 
-        return $response;
+            $pumps = $station->getPumps();
+
+            /** @var Pump $pump */
+            foreach ($pumps as $pump) {
+                $pumpId = $pump->getPumpId();
+                $stationData['pumpId'][]=$pumpId;
+            }
+            $stationsArr[] = $stationData;
+        }
+        $stationsResult = array("result"=>$stationsArr);
+
+        return new JsonResponse($stationsResult);
+
+//        $em = $this->getDoctrine()->getManager();
+//        $query = $em->createQuery(
+//            'SELECT c
+//        FROM AppBundle:Station c'
+//        );
+//        $stations = $query->getArrayResult();
+//        $stationsResult = array("result"=>$stations);
+//
+//        $response = new Response(json_encode($stationsResult));
+//        $response->headers->set('Content-Type', 'application/json');
+//
+//
+//        return $response;
 
     }
 

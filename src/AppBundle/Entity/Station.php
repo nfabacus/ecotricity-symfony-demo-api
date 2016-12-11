@@ -68,7 +68,15 @@ class Station
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $pumpModel;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Pump", mappedBy="station")
+     */
+    private $pumps;
 
 
     /**
@@ -242,6 +250,30 @@ class Station
      */
     public function setUpdatedAtValue() {
         $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPumps()
+    {
+        return $this->pumps;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPumpModel()
+    {
+        return $this->pumpModel;
+    }
+
+    /**
+     * @param mixed $pumpModel
+     */
+    public function setPumpModel($pumpModel)
+    {
+        $this->pumpModel = $pumpModel;
     }
 
 
