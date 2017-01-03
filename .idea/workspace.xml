@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="556063dd-dbf8-4d0d-aeae-19f2df457e73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/StationsController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/StationsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Pump.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Pump.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Station.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Station.php" />
-    </list>
+    <list default="true" id="556063dd-dbf8-4d0d-aeae-19f2df457e73" name="Default" comment="" />
     <ignored path="ecotricity_symfony_demo_api.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -53,8 +48,8 @@
               <file leaf-file-name="StationsController.php" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/StationsController.php">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="195">
-                      <caret line="131" column="46" selection-start-line="131" selection-start-column="46" selection-end-line="131" selection-end-column="46" />
+                    <state relative-caret-position="135">
+                      <caret line="157" column="50" selection-start-line="157" selection-start-column="50" selection-end-line="157" selection-end-column="50" />
                       <folding>
                         <element signature="e#132#163#0#PHP" expanded="true" />
                         <marker date="1481420724000" expanded="true" signature="6066:6109" ph="SELECT c FRO... AppBundle" />
@@ -131,8 +126,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 5.5" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="430" />
-    <option name="y" value="23" />
+    <option name="x" value="438" />
+    <option name="y" value="180" />
     <option name="width" value="1341" />
     <option name="height" value="910" />
   </component>
@@ -501,15 +496,15 @@
       <workItem from="1481321225472" duration="458000" />
       <workItem from="1481321815209" duration="1000" />
       <workItem from="1481321822675" duration="226000" />
-      <workItem from="1481326780101" duration="15543000" />
+      <workItem from="1481326780101" duration="16459000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111835000" />
+    <option name="totallyTimeSpent" value="112751000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="430" y="23" width="1341" height="910" extended-state="0" />
+    <frame x="438" y="180" width="1341" height="910" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.152871" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -955,8 +950,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/StationsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="131" column="46" selection-start-line="131" selection-start-column="46" selection-end-line="131" selection-end-column="46" />
+        <state relative-caret-position="135">
+          <caret line="157" column="50" selection-start-line="157" selection-start-column="50" selection-end-line="157" selection-end-column="50" />
           <folding>
             <element signature="e#132#163#0#PHP" expanded="true" />
             <marker date="1481420724000" expanded="true" signature="6066:6109" ph="SELECT c FRO... AppBundle" />
